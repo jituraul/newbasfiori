@@ -69,6 +69,7 @@
 				</items>
             </Table> -->
           <Label text="Combobox"/>  
+          <Label text="jitu" />
 		</semantic:content>
 		<!--Semantic ShareMenu Buttons-->
 		<semantic:sendEmailAction>

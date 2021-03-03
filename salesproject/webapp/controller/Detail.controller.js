@@ -43,7 +43,8 @@ sap.ui.define([
 		 * @public
 		 */
 		onSendEmailPress : function () {
-			var oViewModel = this.getModel("detailView");
+            var oViewModel = this.getModel("detailView");
+            var oRouter = this.getOwnerComponent().getRouter();
 
 			URLHelper.triggerEmail(
 				null,
