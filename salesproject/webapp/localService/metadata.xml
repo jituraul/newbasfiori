@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="http://s4hana1909.training.com:8701/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://s4hana1909.training.com:8701/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://s4hana1909.training.com:8701/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://s4hana1909.training.com:8701/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://s4hana1909.training.com:8701/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZCDS_ODATA1_CDS" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="SNWD_SO_IType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="NODE_KEY"/>
+                </Key>
+                <Property Name="NODE_KEY" Type="Edm.Guid" Nullable="false" sap:label="Node Key"/>
+                <Property Name="PARENT_KEY" Type="Edm.Guid" sap:label="Node Key"/>
+                <Property Name="SO_ITEM_POS" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Item Position"/>
+                <Property Name="PRODUCT_GUID" Type="Edm.Guid" sap:label="Node Key"/>
+                <Property Name="NOTE_GUID" Type="Edm.Guid" sap:label="Node Key"/>
+                <Property Name="CURRENCY_CODE" Type="Edm.String" MaxLength="5" sap:label="Currency Code" sap:semantics="currency-code"/>
+                <Property Name="GROSS_AMOUNT" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="CURRENCY_CODE" sap:label="Gross Amount"/>
+                <Property Name="NET_AMOUNT" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="CURRENCY_CODE" sap:label="Net Amount"/>
+                <Property Name="TAX_AMOUNT" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="CURRENCY_CODE" sap:label="Tax Amount"/>
+                <Property Name="ITEM_ATP_STATUS" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="ATP Status"/>
+                <Property Name="OP_ITEM_POS" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Item Position"/>
+                <Property Name="_DATAAGING" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Data Filter Value for Data Aging"/>
+                <Property Name="DUMMY" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="ZCDS_i_BPAType" sap:label="business partner" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="node_key"/>
+                </Key>
+                <Property Name="node_key" Type="Edm.Guid" Nullable="false" sap:label="Node Key" sap:quickinfo="EPM: Generic Node Key"/>
+                <Property Name="bp_role" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Bus. Part. Role" sap:quickinfo="EPM: Business Partner Role"/>
+                <Property Name="email_address" Type="Edm.String" MaxLength="255" sap:label="Email" sap:quickinfo="EPM: E-Mail Address"/>
+                <Property Name="phone_number" Type="Edm.String" MaxLength="30" sap:label="Phone" sap:quickinfo="EPM: Phone Number"/>
+                <Property Name="fax_number" Type="Edm.String" MaxLength="30" sap:label="Fax" sap:quickinfo="EPM: Fax Number"/>
+                <Property Name="web_address" Type="Edm.String" sap:label="URI" sap:quickinfo="EPM: Web Address"/>
+                <Property Name="address_guid" Type="Edm.Guid" sap:label="Node Key" sap:quickinfo="EPM: Generic Node Key"/>
+                <Property Name="bp_id" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Business Partner ID" sap:quickinfo="EPM: Business Partner ID"/>
+                <Property Name="company_name" Type="Edm.String" MaxLength="80" sap:label="Company" sap:quickinfo="EPM: Company Name"/>
+                <Property Name="legal_form" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Legal Form" sap:quickinfo="EPM: Legal Form of Business Partner"/>
+                <Property Name="currency_code" Type="Edm.String" MaxLength="5" sap:label="Currency Code" sap:quickinfo="EPM: Currency Code" sap:semantics="currency-code"/>
+                <Property Name="approval_status" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Approval Status" sap:quickinfo="EPM: Business Partner Approval Status"/>
+                <Property Name="city" Type="Edm.String" MaxLength="40" sap:label="City" sap:quickinfo="EPM: City"/>
+                <Property Name="postal_code" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Postal Code" sap:quickinfo="EPM: Postal Code"/>
+                <Property Name="street" Type="Edm.String" MaxLength="60" sap:label="Street" sap:quickinfo="EPM: Street"/>
+                <Property Name="building" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Building" sap:quickinfo="EPM: Building"/>
+                <Property Name="country" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Country" sap:quickinfo="EPM: Country Code"/>
+            </EntityType>
+            <EntityType Name="ZCDS_ODATA1Type" sap:label="final odata service" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="node_key"/>
+                </Key>
+                <Property Name="node_key" Type="Edm.Guid" Nullable="false" sap:label="Node Key" sap:quickinfo="EPM: Generic Node Key"/>
+                <Property Name="so_id" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Sales Order ID" sap:quickinfo="EPM: Sales Order Number"/>
+                <Property Name="buyer_guid" Type="Edm.Guid" sap:label="Node Key" sap:quickinfo="EPM: Generic Node Key"/>
+                <Property Name="currency_code" Type="Edm.String" MaxLength="5" sap:label="Currency Code" sap:quickinfo="EPM: Currency Code" sap:semantics="currency-code"/>
+                <Property Name="gross_amount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="currency_code" sap:label="Gross Amount" sap:quickinfo="EPM: Total Gross Amount"/>
+                <Property Name="net_amount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="currency_code" sap:label="Net Amount" sap:quickinfo="EPM: Total Net Amount"/>
+                <Property Name="tax_amount" Type="Edm.Decimal" Precision="16" Scale="3" sap:unit="currency_code" sap:label="Tax Amount" sap:quickinfo="EPM: Total Tax Amount"/>
+                <Property Name="payment_method" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Payment Method" sap:quickinfo="EPM: Sales Order Payment Method"/>
+                <Property Name="payment_terms" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Payment Terms" sap:quickinfo="EPM: Sales Order Payment Terms"/>
+                <NavigationProperty Name="to_item" Relationship="ZCDS_ODATA1_CDS.assoc_3CEA455D59B951A257C6D1E2D34926E2" FromRole="FromRole_assoc_3CEA455D59B951A257C6D1E2D34926E2" ToRole="ToRole_assoc_3CEA455D59B951A257C6D1E2D34926E2"/>
+                <NavigationProperty Name="to_partner" Relationship="ZCDS_ODATA1_CDS.assoc_332E537BCC804E22C28846335D223E57" FromRole="FromRole_assoc_332E537BCC804E22C28846335D223E57" ToRole="ToRole_assoc_332E537BCC804E22C28846335D223E57"/>
+            </EntityType>
+            <Association Name="assoc_332E537BCC804E22C28846335D223E57" sap:content-version="1">
+                <End Type="ZCDS_ODATA1_CDS.ZCDS_ODATA1Type" Multiplicity="1" Role="FromRole_assoc_332E537BCC804E22C28846335D223E57"/>
+                <End Type="ZCDS_ODATA1_CDS.ZCDS_i_BPAType" Multiplicity="0..1" Role="ToRole_assoc_332E537BCC804E22C28846335D223E57"/>
+            </Association>
+            <Association Name="assoc_3CEA455D59B951A257C6D1E2D34926E2" sap:content-version="1">
+                <End Type="ZCDS_ODATA1_CDS.ZCDS_ODATA1Type" Multiplicity="1" Role="FromRole_assoc_3CEA455D59B951A257C6D1E2D34926E2"/>
+                <End Type="ZCDS_ODATA1_CDS.SNWD_SO_IType" Multiplicity="0..1" Role="ToRole_assoc_3CEA455D59B951A257C6D1E2D34926E2"/>
+            </Association>
+            <EntityContainer Name="ZCDS_ODATA1_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="SNWD_SO_I" EntityType="ZCDS_ODATA1_CDS.SNWD_SO_IType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZCDS_i_BPA" EntityType="ZCDS_ODATA1_CDS.ZCDS_i_BPAType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZCDS_ODATA1" EntityType="ZCDS_ODATA1_CDS.ZCDS_ODATA1Type" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_3CEA455D59B951A257C6D1E2D34926E2" Association="ZCDS_ODATA1_CDS.assoc_3CEA455D59B951A257C6D1E2D34926E2" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZCDS_ODATA1" Role="FromRole_assoc_3CEA455D59B951A257C6D1E2D34926E2"/>
+                    <End EntitySet="SNWD_SO_I" Role="ToRole_assoc_3CEA455D59B951A257C6D1E2D34926E2"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_332E537BCC804E22C28846335D223E57" Association="ZCDS_ODATA1_CDS.assoc_332E537BCC804E22C28846335D223E57" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZCDS_ODATA1" Role="FromRole_assoc_332E537BCC804E22C28846335D223E57"/>
+                    <End EntitySet="ZCDS_i_BPA" Role="ToRole_assoc_332E537BCC804E22C28846335D223E57"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations Target="ZCDS_ODATA1_CDS.ZCDS_ODATA1_CDS_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZCDS_ODATA1_CDS.ZCDS_ODATA1_CDS_Entities/ZCDS_i_BPA" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="web_address"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>web_address</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="http://s4hana1909.training.com:8701/sap/opu/odata/sap/ZCDS_ODATA1_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://s4hana1909.training.com:8701/sap/opu/odata/sap/ZCDS_ODATA1_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
